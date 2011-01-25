@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	iMacros
 " Maintainer:	Chib (gruntrush at hotmail dot com)
-" Last Change:	2011 Jan 03
+" Last Change:	2011 Jan 25
 "
 " Known Bugs:
 "  - Strings and URLs in PROMPT or similar commands are highlighted
@@ -32,10 +32,13 @@ syntax keyword command ADD BACK CLEAR CLICK CMDLINE DS FILEDELETE FILTER FRAME I
 syntax keyword equal POS TYPE ATTR FORM BUILD EXTRACT GOTO OPEN T CONTENT RECORDER FOLDER FILE CLOSEALLOTHERS XPATH STATUS BUTTON CLOSE
 
 syntax keyword inbuilt !CLIPBOARD !DATASOURCE !DATASOURCE_COLUMNS !DATASOURCE_LINE !ENCRYPTION !ENDOFPAGE !ERRORIGNORE !ERRORMACRO !EXTRACT !EXTRACT_TEST_POPUP !EXTRACTADD !EXTRACTDIALOG !FILELOG !FILESTOPWATCH !FOLDER_DATASOURCE !FOLDER_STOPWATCH !FOLDERIMACROS !IMAGEX !IMAGEY !LOADCHECK !LOOP !MARKOBJECT !NOW !POPUP_ALLOWED !REPLAYSPEED !REGION_BOTTOM !REGION_LEFT !REGION_RIGHT !REGION_TOP !SINGLESTEP !STOPWATCHTIME !STOPWATCH_HEADER !TAGSOURCEINDEX !TAGX !TAGY !TIMEOUT !TIMEOUT_MACRO !TIMEOUT_PAGE !TIMEOUT_TAG !TIMEOUT_STEP !URLCURRENT !URLSTART !USERAGENT !VAR1 !VAR2 !VAR3
-syntax match inbuilt /<SP>\|<BR>\|<LF>\|!COL\d*/
+syntax match inbuilt /!COL\d*/
 
-syntax keyword surrounders NULL NO YES MEDIUM SLOW FAST
+syntax match letters /<SP>\|<BR>\|<LF>\|/
+
 syntax match surrounders /{{.\{-}}}/
+
+syntax keyword specialwords NULL NO YES MEDIUM SLOW FAST
 
 syntax keyword inputtypes A TD SELECT TEXTAREA IMG HTM CPL INPUT TABLE SPAN ALT HREF DIV TITLE FX CR IMAGES ON OFF OK PNG FONT PRE
 syntax match inputtypes /INPUT:TEXT\|INPUT:CHECKBOX\|INPUT:SUBMIT\|INPUT:IMAGE\|INPUT:RADIO\|INPUT:HIDDEN\|BODY\|ACTION\|NAME\|ID\|VALUE\|SRC\|TXT\|CLASS\|INPUT:PASSWORD\|INPUT:FILE\|HREF\|INPUT:BUTTON/
@@ -49,15 +52,17 @@ syntax match url /http.\{-}\_[ 	]/
 syntax match quote /".\{-}"/
 
 
-highlight link command Statement
-highlight link equal Type
-highlight link inbuilt Constant
-highlight link surrounders SpecialChar
-highlight link inputtypes Statement
-highlight link equalsign Identifier
+highlight link command Function
+highlight link equal Statement
+highlight link inbuilt Number
+highlight link letters Special
+highlight link surrounders Tag
+highlight link specialwords Label
+highlight link inputtypes Type
+highlight link equalsign Operator
 highlight link acomment Comment
-highlight link url Constant
-highlight link quote PreProc
+highlight link url Boolean
+highlight link quote String
 
 
 let b:current_syntax = "iim"
